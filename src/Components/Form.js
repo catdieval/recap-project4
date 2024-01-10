@@ -1,4 +1,4 @@
-export function Form({ onAddActivity }) {
+export function Form({ onAddActivity, activities }) {
   return (
     <>
       <h1>Add new activity</h1>
@@ -17,7 +17,8 @@ export function Form({ onAddActivity }) {
             };
             event.target.form.reset();
             event.target.form.activity.focus();
-            // onAddActivity(data);
+            onAddActivity(data);
+            console.log(activities);
           }}
         >
           Submit
