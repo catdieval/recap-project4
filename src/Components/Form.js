@@ -20,7 +20,6 @@ export function Form({ onAddActivity, activities }) {
             event.target.form.reset();
             event.target.form.activity.focus();
             onAddActivity(data);
-            console.log(activities);
           }}
         >
           Submit
