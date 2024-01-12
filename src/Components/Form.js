@@ -1,5 +1,5 @@
 import { uid } from "uid";
-export function Form({ onAddActivity, activities }) {
+export function Form({ onAddActivity }) {
   return (
     <>
       <h1>Add new activity</h1>
