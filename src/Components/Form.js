@@ -1,3 +1,4 @@
+import { uid } from "uid";
 export function Form({ onAddActivity, activities }) {
   return (
     <>
@@ -13,7 +14,8 @@ export function Form({ onAddActivity, activities }) {
             event.preventDefault();
             const data = {
               name: event.target.form.activity.value,
-              isForGoodWeathe: event.target.form.checkbox.checked,
+              isForGoodWeather: event.target.form.checkbox.checked,
+              id: uid(),
             };
             event.target.form.reset();
             event.target.form.activity.focus();

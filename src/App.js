@@ -1,11 +1,17 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Form } from "./Components/Form.js";
 import { useState } from "react";
 
 function App() {
   const [activities, setActivities] = useState([]);
-  return <Form onAddActivity={setActivities} activities={activities} />;
+
+  function handleAddActivity(newActivity) {
+    const allActivities = [...activities];
+    allActivities.push(newActivity);
+    setActivities(allActivities);
+  }
+
+  return <Form onAddActivity={handleAddActivity} activities={activities} />;
 }
 
 export default App;
