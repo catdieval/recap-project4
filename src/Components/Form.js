@@ -2,7 +2,7 @@ import { uid } from "uid";
 export function Form({ onAddActivity }) {
   return (
     <>
-      <h1>Add new activity</h1>
+      <h2>Add new activity</h2>
       <form>
         <label htmlFor="activity">Name: </label>
         <input autoFocus type="text" id="activity"></input>
