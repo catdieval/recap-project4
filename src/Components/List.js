@@ -8,7 +8,9 @@ export function List({ activities, isGoodWeather }) {
       </h1>
       <ul>
         {activities.map((activity) => (
-          <li key={activity.id}>{activity.name}</li>
+          <li className="listItem" key={activity.id}>
+            {activity.name} <button type="delete">❌</button>
+          </li>
         ))}
       </ul>
     </>

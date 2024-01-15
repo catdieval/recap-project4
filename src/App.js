@@ -7,6 +7,8 @@ import { useEffect } from "react";
 
 function App() {
   const [weather, setWeather] = useState(null);
+  const [emoji, setEmoji] = useState("");
+  const [temperature, setTemperature] = useState(0);
 
   useEffect(() => {
     async function fetchWeather() {
@@ -14,7 +16,10 @@ function App() {
         "https://example-apis.vercel.app/api/weather"
       );
       const weather = await response.json();
+      console.log(weather);
       setWeather(weather.isGoodWeather);
+      setEmoji(weather.condition);
+      setTemperature(weather.temperature);
     }
     fetchWeather();
   }, []);
@@ -41,6 +46,9 @@ function App() {
 
   return (
     <>
+      <h1>
+        {emoji} {temperature} °C
+      </h1>
       <List
         activities={filterActivity(activities)}
         isGoodWeather={isGoodWeather}
