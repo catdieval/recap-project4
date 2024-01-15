@@ -13,7 +13,6 @@ function App() {
     defaultValue: [],
   });
   const isGoodWeather = weather;
-
   useEffect(() => {
     async function fetchWeather() {
       const response = await fetch(
@@ -23,8 +22,13 @@ function App() {
       setWeather(weather.isGoodWeather);
       setEmoji(weather.condition);
       setTemperature(weather.temperature);
+      console.log(weather);
     }
     fetchWeather();
+    const timerId = setInterval(fetchWeather, 60000);
+    return () => {
+      clearInterval(timerId);
+    };
   }, []);
 
   function handleAddActivity(newActivity) {
