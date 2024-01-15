@@ -9,6 +9,10 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [emoji, setEmoji] = useState("");
   const [temperature, setTemperature] = useState(0);
+  const [activities, setActivities] = useLocalStorageState("activities", {
+    defaultValue: [],
+  });
+  const isGoodWeather = weather;
 
   useEffect(() => {
     async function fetchWeather() {
@@ -16,7 +20,6 @@ function App() {
         "https://example-apis.vercel.app/api/weather"
       );
       const weather = await response.json();
-      console.log(weather);
       setWeather(weather.isGoodWeather);
       setEmoji(weather.condition);
       setTemperature(weather.temperature);
@@ -24,16 +27,10 @@ function App() {
     fetchWeather();
   }, []);
 
-  const isGoodWeather = weather;
-  const [activities, setActivities] = useLocalStorageState("activities", {
-    defaultValue: [],
-  });
-
   function handleAddActivity(newActivity) {
     const allActivities = [...activities];
     allActivities.push(newActivity);
     setActivities(allActivities);
-    console.log(activities);
   }
 
   function filterActivity(activities) {
@@ -44,6 +41,14 @@ function App() {
     return filteredActivities;
   }
 
+  function handleDeleteActivity(id) {
+    console.log(id);
+    let allActivities = [...activities];
+    allActivities = allActivities.filter((a) => a.id !== id);
+
+    setActivities(allActivities);
+  }
+
   return (
     <>
       <h1>
@@ -52,6 +57,7 @@ function App() {
       <List
         activities={filterActivity(activities)}
         isGoodWeather={isGoodWeather}
+        onDeleteActivity={handleDeleteActivity}
       />
       <Form onAddActivity={handleAddActivity} />
       <p>{isGoodWeather ? "true" : "false"}</p>
